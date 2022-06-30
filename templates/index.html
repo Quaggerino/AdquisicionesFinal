@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Adquisiciones {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'>
+    <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+    <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename='css/index.css')}}">
+    <link rel="icon" href="https://i.imgur.com/pdNA9n2.png">
+  </head>
+  <body>
+    
+    <header>
+      <div id="logo">
+      <div class="waviy">
+        <span style="--i:1">A</span>
+        <span style="--i:2">d</span>
+        <span style="--i:3">q</span>
+        <span style="--i:4">u</span>
+        <span style="--i:5">i</span>
+        <span style="--i:6">s</span>
+        <span style="--i:7">i</span>
+        <span style="--i:8">c</span>
+        <span style="--i:9">i</span>
+        <span style="--i:10">o</span>
+        <span style="--i:11">n</span>
+        <span style="--i:12">e</span>
+        <span style="--i:13">s</span>
+       </div>
+      </div>
+      <ul>
+        <li><a class="active" href="#">Inicio</a></li>
+        <li><a id="admin" class="administrar" onclick="showDiv()" href="#">Administrar</a></li>
+        <li><a href="https://proovedor-front.netlify.app/">Proveedor</a></li>
+        <li><a href="/">Salir</a></li>
+      </ul>
+      
+      <div id="buttons2">
+        <div>
+        <img onclick="showAgregar()" id="agregar" src="{{url_for('static', filename='img/add.png')}}" alt=""></img> 
+        </div> 
+        <div>
+          <img onclick="showActualizar()" id="actualizar" src="{{url_for('static', filename='img/replace.png')}}" alt=""></img> 
+          </div>  
+          <div>
+            <img onclick="showEliminar()" id="eliminar" src="{{url_for('static', filename='img/delete.png')}}" alt=""></img> 
+            </div>        
+      </div>
+      
+
+      <div id="form-box">
+        <div class="one">
+          <h1 class="h1pro">Almacenar Producto</h1>
+          
+          <input id="x1" class="input1" type="text" name="name" placeholder="Nombre del Producto" required value="" />
+          <input id="x2" class="input1" type="text" name="description" placeholder="Descripción" required value="" />
+          <input id="x3" class="input1" type="text" name="price" placeholder="Precio (en miles)" required value="" />
+          <input id="x4" class="input1" type="text" name="quantity" placeholder="Cantidad" required value="" />
+          <input id="x5" class="input1" type="text" list="categoria" name="subcategory_id" placeholder="Categoría" 
+          pattern="2|3|4|5|6|10"
+          title='Tiene que ser "2", "3", "4", "5","6" o "10"' required value="" />
+          <datalist id="categoria">
+            <option value="2">Celulares - Tablets
+            <option value="3">TV - Audio - Video
+            <option value="4">Consolas - Videos Juegos
+            <option value="5">Computación
+            <option value="6">Moda
+            <option value="10">Ofertas
+          </datalist>
+          <input class="input1" type="submit" name="signup_submit" onclick="adquisicionProducto()" value="Almacenar" />
+        </div>
+      </div>
+
+      <div id="form-box2">
+        <div class="two">
+          <h1 class="h1pro">Actualizar Producto</h1>
+          
+          <input id="y0" class="input1" type="text" name="id" placeholder="ID Producto" required value="" />
+          <input id="y1" class="input1" type="text" name="name" placeholder="Nombre del Producto" required value="" />
+          <input id="y2" class="input1" type="text" name="description" placeholder="Descripción" required value="" />
+          <input id="y3" class="input1" type="text" name="price" placeholder="Precio (en miles)" required value="" />
+          <input id="y4" class="input1" type="text" name="quantity" placeholder="Cantidad" required value="" />
+          <input class="input1" type="submit" name="signup_submit" onclick="actualizarProducto()" value="Actualizar" />
+        </div>
+      </div>
+    </div>
+
+    <div id="form-box3">
+      <div class="three">
+        <h1 class="h1pro">Eliminar Producto</h1>
+        
+        <input id="i0" class="input1" type="text" name="id" placeholder="ID Producto" required value="" />
+        <input id="i1" class="input1" type="text" readonly="readonly" name="name" placeholder="" required value="" />
+        <input id="i2" class="input1" type="text" readonly="readonly" name="description" placeholder="" required value="" />
+        <input id="i3" class="input1" type="text" readonly="readonly" name="price" placeholder="" required value="" />
+        <input id="i4" class="input1" type="text" readonly="readonly" name="quantity" placeholder="" required value="" />
+        <input class="input1" type="submit" name="signup_submit" onclick="eliminarProducto()" value="Eliminar" />
+      </div>
+    </div>
+  </div>
+
+
+
+    </header>
+
+    
+
+    <section>
+      <img src="{{url_for('static', filename='img/stars.png')}}" id="stars" alt="stars" />
+      <img src="{{url_for('static', filename='img/ghost.png')}}" id="ghost" alt="ghost" />
+      <img src="{{url_for('static', filename='img/mountains_behind.png')}}" id="mountains_behind" />
+      <h2 id="text">👻</h2>
+      <a href="#sec" id="btn">Buscar</a>
+      <img src="{{url_for('static', filename='img/mountains_front.png')}}" id="mountains_front" />
+    </section>
+
+    <div class="sec" id="sec">
+        <form autocomplete="off">
+          <div class="finder">
+            <div class="finder__outer">
+              <div class="finder__inner">
+                <div class="finder__icon" ref="icon"></div>
+                <input class="finder__input" type="text" name="q" placeholder="Buscar producto..." />
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div id="buttons">
+          <button class="button-value" onclick="filterProduct('all')">Todos</button>
+          <button class="button-value" onclick="filterProduct('2')">Celulares - Tablets</button>
+          <button class="button-value" onclick="filterProduct('3')">TV - Audio - Video</button>
+          <button class="button-value" onclick="filterProduct('4')">Consolas - Videos Juegos</button>
+          <button class="button-value" onclick="filterProduct('5')">Computación</button>
+          <button class="button-value" onclick="filterProduct('6')">Moda</button>
+          <button class="button-value" onclick="filterProduct('10')">Ofertas</button>
+        </div>
+      
+      
+      <div id="hero-section">
+        <div class="container">
+            
+    
+            <div class="products" data-product-cards-container>
+            <template data-product-template>
+              <div class="card">
+                <div class="card3">
+                  <div class="header2" data-id></div>
+                </div>
+                <div class="header" data-header></div>
+                <div class="body" data-body></div>
+                <div class="body2" data-body2></div>
+                <div class="body3" data-body3></div>
+                <div class="card2">
+                  <div class="img" data-img></div>
+                </div>
+                
+              </div>
+            </template>
+        </div>
+      </div>
+    </div>
+  </body>
+  {% block content %}
+  <script  src="{{url_for('static', filename='js/script.js')}}"></script>
+  {% endblock %}
+</html>

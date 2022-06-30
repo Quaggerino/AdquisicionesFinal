@@ -1,0 +1,36 @@
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Ingreso</title>
+  <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+  <link rel="icon" href="https://i.imgur.com/pdNA9n2.png">
+  
+</head>
+<section>
+  <img src="{{url_for('static', filename='img/stars.png')}}" id="stars" alt="stars" />
+  <img src="{{url_for('static', filename='img/ghost2.png')}}" id="ghost" alt="ghost" />
+  <img src="{{url_for('static', filename='img/mountains_behind-day.png')}}" id="mountains_behind" />
+  <img src="{{url_for('static', filename='img/mountains_front-day.png')}}" id="mountains_front" />
+  
+</section>
+<body>
+  
+<!-- partial:index.partial.html -->
+
+<form class="form" method="POST">
+  <div id="error"></div>
+  <input id="email" name="email" type="text" placeholder="Email">
+  <input id="password" name="password" type="password" placeholder="Contraseña">
+  <button type="submit">Entrar</button>
+</form>
+<!-- partial -->
+</body>
+</html>
+
+{% endblock %}
